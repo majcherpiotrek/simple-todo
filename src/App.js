@@ -1,7 +1,7 @@
 import './App.css';
 
 import React from 'react';
-import logo from './logo.svg';
+import logo from './img/logo.svg';
 import TodoBoard from './todo-board/TodoBoard';
 
 function App(props) {

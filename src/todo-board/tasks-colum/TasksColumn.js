@@ -1,48 +1,35 @@
-import React, { Component } from 'react';
 import './TasksColumn.css';
+
+import React from 'react';
 import TitleField from './title-field/TitleField';
 import Task from './task/Task';
 import CreateTask from './create-task/CreateTask';
 
-class TasksColumn extends Component {
+function TasksColumn(props) {
 
-    constructor(props) {
-        super(props);
-        this.onTaskCreated = this.onTaskCreated.bind(this);
-        this.onDrop = this.onDrop.bind(this);
-        this.onTaskLifted = this.onTaskLifted.bind(this);
+    function onTaskLifted(e, taskId) {
+        props.onTaskLifted(e, props.data.id, taskId);
     }
 
-    allowDrop(e) {
-        e.preventDefault();
-    }
-
-    onTaskCreated(task) {
-        this.props.onTaskCreated(this.props.data.id, task);
-    }
-
-    onDrop(e) {
-        this.props.onTaskDropped(e, this.props.data.id);
-    }
-
-    onTaskLifted(e, taskId) {
-        this.props.onTaskLifted(e, this.props.data.id, taskId);
-    }
-
-    render() {
-    const createTaskComponent = this.props.data.creatingTasksEnabled ? (<CreateTask onTaskCreated={this.onTaskCreated}/>) : null;
+    const createTaskComponent = props.data.creatingTasksEnabled ? 
+                                    (<CreateTask onTaskCreated={(task) => props.onTaskCreated(props.data.id, task)}/>) 
+                                    : null;
+    
+    const tasks = props.data.tasks.map((task) => {
         return (
-        <div className="TasksColumn" onDrop={this.onDrop} onDragOver={this.allowDrop}>
-            <TitleField title={this.props.data.title}/>
-            {this.props.data.tasks.map((task) => {
-                return (
-                    <Task key={task.id} task={task} onTaskLifted={this.onTaskLifted}/>
-                );
-            })}
-            {createTaskComponent}
-        </div>
+            <Task key={task.id} task={task} onTaskLifted={onTaskLifted}/>
         );
-    }
+    });
+    return (
+        <div className="TasksColumn" 
+            onDrop={(e) => props.onTaskDropped(e, props.data.id)}
+            onDragOver={(e) => e.preventDefault()}>
+                <TitleField title={props.data.title}/>
+                {tasks}
+                {createTaskComponent}
+        </div>
+    );
+    
 }
 
 export default TasksColumn;

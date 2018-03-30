@@ -1,19 +1,13 @@
-import React, { Component } from 'react';
 import './TitleField.css';
 
-class TitleField extends Component {
+import React, { Component } from 'react';
 
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
+function TitleField(props) {
+    return (
         <div className="TitleField">
-            <h1>{this.props.title}</h1>
+            <h1>{props.title}</h1>
         </div>
-        );
-    }
+    );  
 }
 
 export default TitleField;

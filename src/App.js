@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import React from 'react';
+import logo from './logo.svg';
 import TodoBoard from './todo-board/TodoBoard';
 
-class App extends Component {
-  render() {
+function App(props) {
     return (
       <div className="App">
         <header className="App-header">
@@ -13,7 +13,6 @@ class App extends Component {
         <TodoBoard/>
       </div>
     );
-  }
 }
 
 export default App;

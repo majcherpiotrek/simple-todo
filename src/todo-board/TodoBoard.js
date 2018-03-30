@@ -1,6 +1,7 @@
+import './TodoBoard.css';
+
 import React, { Component } from 'react';
 import TasksColumn from './tasks-colum/TasksColumn'
-import './TodoBoard.css';
 
 class TodoBoard extends Component {
 

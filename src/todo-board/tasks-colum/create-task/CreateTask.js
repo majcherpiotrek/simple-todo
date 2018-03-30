@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
 import './CreateTask.css';
+
+import React, { Component } from 'react';
 
 class CreateTask extends Component {
 
@@ -39,8 +40,6 @@ class CreateTask extends Component {
         });
 
         this.props.onTaskCreated(task);
-    
-        e.preventDefault();
     }
 
     render() {

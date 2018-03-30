@@ -1,25 +1,19 @@
-import React, { Component } from 'react';
 import './Task.css';
 
-class Task extends Component {
+import React from 'react';
 
-    constructor(props) {
-        super(props);
-        this.onDrag = this.onDrag.bind(this);
+function Task(props) {
+
+    function onDrag(e) {
+        props.onTaskLifted(e, props.task.id); 
     }
 
-    onDrag(e) {
-        this.props.onTaskLifted(e, this.props.task.id);    
-    }
-
-    render() {
-        return (
-        <div className="Task" draggable="true" onDragStart={this.onDrag}>
-            <h2>{this.props.task.title}</h2>
-            <p>{this.props.task.text}</p>
+    return (
+        <div className="Task" draggable="true" onDragStart={onDrag}>
+            <h2>{props.task.title}</h2>
+            <p>{props.task.text}</p>
         </div>
         );
-    }
 }
 
 export default Task;

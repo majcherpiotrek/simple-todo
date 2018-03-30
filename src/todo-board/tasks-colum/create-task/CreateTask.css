@@ -1,0 +1,20 @@
+.CreateTask {
+    background-color: lightblue;
+    border: 1px solid black;
+    border-radius: 3px;
+    flex: 1;
+    padding: 4px;
+    margin: 4px;
+    display: flex;
+    flex-direction: column;
+    max-height: min-content;
+}
+
+.CreateTask * {
+    margin: 4px;
+}
+
+.CreateTask input, textarea {
+    border: 1px solid black;
+    border-radius: 3px;
+}

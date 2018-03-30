@@ -1,7 +1,11 @@
 .Task {
     background-color: white;
     border: 1px solid black;
+    border-radius: 3px;
     flex: 1;
+    max-height: min-content;
+    padding: 4px;
+    margin: 4px;
 }
 
 .Task h2 {

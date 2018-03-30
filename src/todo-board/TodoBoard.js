@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import TasksColumn from './tasks-colum/TasksColumn'
 import './TodoBoard.css';
-import Task from './tasks-colum/task-slot/task/Task';
 
 class TodoBoard extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {todo: [], inProgress: [], done:[]};
+  }
+
   render() {
-    const task = {'title':'Task title'}
 
     return (
       <div className="TodoBoard">
-        <TasksColumn title={'To do'} task={task}/>
+        <TasksColumn title={'To do'} isTodoColumn={true}/>
         <TasksColumn title={'In progress'}/>
         <TasksColumn title={'Done'}/>
       </div>

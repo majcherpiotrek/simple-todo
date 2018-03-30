@@ -1,5 +1,9 @@
 .TasksColumn {
     flex: 1;
-    background-color: white;
+    background-color: lightgrey;
     margin: 16px;
+}
+
+.TasksColumn .TitleField {
+    background-color: white;
 }

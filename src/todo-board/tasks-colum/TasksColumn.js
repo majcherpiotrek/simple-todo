@@ -8,51 +8,33 @@ class TasksColumn extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {tasks: [], nextTaskId: 0};
-
-        this.onTaskAdded = this.onTaskAdded.bind(this);
-        this.drop = this.drop.bind(this);
-        this.allowDrop = this.allowDrop.bind(this);
+        this.onTaskCreated = this.onTaskCreated.bind(this);
+        this.onDrop = this.onDrop.bind(this);
         this.onTaskLifted = this.onTaskLifted.bind(this);
-    }
-
-    onTaskAdded(task) {
-        task.id = this.state.nextTaskId;
-
-        this.setState({
-            tasks: this.state.tasks.concat(task),
-            nextTaskId: this.state.nextTaskId++ 
-        });
-    }
-    
-    drop(e) {
-        e.preventDefault();
-        const task = JSON.parse(e.dataTransfer.getData("task"));
-        this.onTaskAdded(task);
     }
 
     allowDrop(e) {
         e.preventDefault();
     }
 
-    onTaskLifted(taskId) {
-        console.log(taskId);
-        // const updatedTasks = this.state.tasks.filter((task) => {
-        //     return task.id !== taskId;
-        // });
+    onTaskCreated(task) {
+        this.props.onTaskCreated(this.props.data.id, task);
+    }
 
-        // this.setState({
-        //     tasks: updatedTasks
-        // });
+    onDrop(e) {
+        this.props.onTaskDropped(e, this.props.data.id);
+    }
+
+    onTaskLifted(e, taskId) {
+        this.props.onTaskLifted(e, this.props.data.id, taskId);
     }
 
     render() {
-    const createTaskComponent = this.props.isTodoColumn ? (<CreateTask onTaskCreated={this.onTaskAdded}/>) : null;
+    const createTaskComponent = this.props.data.creatingTasksEnabled ? (<CreateTask onTaskCreated={this.onTaskCreated}/>) : null;
         return (
-        <div className="TasksColumn" onDrop={this.drop} onDragOver={this.allowDrop}>
-            <TitleField title={this.props.title}/>
-            <h1>{this.state.task && this.state.task.title}</h1>
-            {this.state.tasks.map((task) => {
+        <div className="TasksColumn" onDrop={this.onDrop} onDragOver={this.allowDrop}>
+            <TitleField title={this.props.data.title}/>
+            {this.props.data.tasks.map((task) => {
                 return (
                     <Task key={task.id} task={task} onTaskLifted={this.onTaskLifted}/>
                 );

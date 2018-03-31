@@ -20,12 +20,15 @@ function TasksColumn(props) {
             <Task taskDone={props.data.id === 'done'} key={task.id} task={task} onTaskLifted={onTaskLifted}/>
         );
     });
+
     return (
         <div className="TasksColumn" 
             onDrop={(e) => props.onTaskDropped(e, props.data.id)}
             onDragOver={(e) => e.preventDefault()}>
-                <TitleField title={props.data.title}/>
-                {createTaskComponent}
+                <div className="top-area">
+                    <TitleField title={props.data.title}/>
+                    {createTaskComponent}
+                </div>
                 <div className="tasks-list">{tasks}</div>
         </div>
     );

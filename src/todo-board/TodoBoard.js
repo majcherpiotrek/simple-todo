@@ -17,7 +17,7 @@ class TodoBoard extends Component {
         },
         {
           id: 'inProgress',
-          title: 'In Progress',
+          title: 'In progress',
           tasks: [],
           creatingTasksEnabled: false
         },
@@ -54,26 +54,32 @@ class TodoBoard extends Component {
 
   onTaskDropped(evt, columnId) {
     evt.preventDefault();
-    let columns = this.state.columns.slice();
+    if (columnId === this.state.taskInMotion.originColumnId) {
+      this.setState({
+        taskInMotion: {originColumnId: null, task: null}
+      });
+    } else {
+      let columns = this.state.columns.slice();
 
-    /* Remove task from origin column */
-    let originColumn = columns.find((column) => {
-              return column.id === this.state.taskInMotion.originColumnId;
-            });
-    originColumn.tasks = originColumn.tasks.filter((task) => {
-                            return task.id !== this.state.taskInMotion.task.id;
-                          });
-
-    /* Add new task to destination column */
-    let destinationColumn = columns.find((column) => {
-                              return column.id === columnId;
+      /* Remove task from origin column */
+      let originColumn = columns.find((column) => {
+                return column.id === this.state.taskInMotion.originColumnId;
+              });
+      originColumn.tasks = originColumn.tasks.filter((task) => {
+                              return task.id !== this.state.taskInMotion.task.id;
                             });
-    destinationColumn.tasks.push(this.state.taskInMotion.task);
 
-    this.setState({
-      columns: columns,
-      taskInMotion: {originColumnId: null, task: null}
-    });
+      /* Add new task to destination column */
+      let destinationColumn = columns.find((column) => {
+                                return column.id === columnId;
+                              });
+      destinationColumn.tasks.push(this.state.taskInMotion.task);
+
+      this.setState({
+        columns: columns,
+        taskInMotion: {originColumnId: null, task: null}
+      });
+    }
   }
 
   onTaskCreated(columnId, task) {

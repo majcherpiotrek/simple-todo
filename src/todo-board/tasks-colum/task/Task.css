@@ -1,13 +1,19 @@
 .Task {
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 3px;
+    background-color: #FAE675;
     flex: 1;
     max-height: min-content;
+    max-width: 100%;
     padding: 4px;
-    margin: 4px;
+    margin: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    z-index: 10;
 }
 
 .Task h2 {
     margin: 8px;
+}
+
+.Task p {
+    word-break: break-all;
 }

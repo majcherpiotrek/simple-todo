@@ -1,9 +1,5 @@
 .CreateTask {
-    background-color: lightblue;
-    border: 1px solid black;
-    border-radius: 3px;
     flex: 1;
-    margin: 4px;
     display: flex;
     flex-direction: column;
     max-height: min-content;
@@ -16,6 +12,9 @@
     justify-content: flex-end;
     align-items: center;
     flex-wrap: nowrap;
+    background-color: #222;
+    position: relative;
+    z-index: 10;
 }
 
 .CreateTask .top-bar > div {
@@ -24,18 +23,25 @@
     justify-content: center;
 }
 
-.CreateTask .top-bar > div > h4 {
+.CreateTask .top-bar > div > h5 {
     margin-top: 8px;
     margin-bottom: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    color: white;
+}
+
+.CreateTask .top-bar > img {
+    cursor: pointer;
 }
 
 .CreateTask .expandable {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid black;
-    padding: 8px;
+    z-index: 0;
+
+    background-color: white;
+    border-bottom: .5px solid lightgray;
     
     max-height: 200px;
 
@@ -49,36 +55,60 @@
 .CreateTask .expandable.hidden {
     max-height: 0;
     padding: 0;
-
-    border-top: none;
 }
 
 .CreateTask .expandable .content {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    
-    visibility: visible;
+    justify-content: flex-start;
+    max-width: 100%;
+    min-height: min-content;
+    padding: 4px 8px;
     opacity: 1;
 
-    /* -moz-transition: opacity .2s;
-    -ms-transition: opacity .2s;
-    -o-transition: opacity .2s;
-    -webkit-transition: opacity .2s;
-    transition: opacity .2s; */
+    -moz-transition: opacity .3s;
+    -ms-transition: opacity .3s;
+    -o-transition: opacity .3s;
+    -webkit-transition: opacity .3s;
+    transition: opacity .3s;
 }
 
 .CreateTask .expandable.hidden .content {
-    visibility: hidden;
     opacity: 0;
 }
 
-.CreateTask input, textarea {
-    border: 1px solid black;
-    border-radius: 3px;
-    margin-bottom: 4px;
-    width: 100%;
+.CreateTask input, .CreateTask textarea {
+    border: .5px solid lightgray;
+    padding: 2px;
+    margin: 4px;
+    max-width: 100%;
+}
+
+.CreateTask input:focus, .CreateTask textarea:focus {
+    outline: none;
+    border: 1px solid lightgray;
+    border-radius: 2px;
+}
+
+.CreateTask textarea {
+    resize: none;
+}
+
+.CreateTask .expandable .content .button {
+    max-width: 100%;
+    background-color: #222;
+    margin: 4px;
+    padding: 4px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.CreateTask .expandable .content .button > span {
+    flex: 1;
+    color: white;
+    font-weight: 400;
+    font-size: 12px;
 }

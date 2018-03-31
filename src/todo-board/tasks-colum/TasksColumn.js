@@ -25,8 +25,8 @@ function TasksColumn(props) {
             onDrop={(e) => props.onTaskDropped(e, props.data.id)}
             onDragOver={(e) => e.preventDefault()}>
                 <TitleField title={props.data.title}/>
-                {tasks}
                 {createTaskComponent}
+                {tasks}
         </div>
     );
     

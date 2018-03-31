@@ -1,7 +1,9 @@
 import './CreateTask.css';
 
 import React, { Component } from 'react';
-import iconPlus from '../../../img/iconPlus.svg'
+import arrow_down from '../../../img/arrow_down.svg';
+import arrow_up from '../../../img/arrow_up.svg';
+import done from '../../../img/done.svg';
 
 class CreateTask extends Component {
 
@@ -26,23 +28,24 @@ class CreateTask extends Component {
     }
 
     onTextInputChange(e) {
+        e.preventDefault();
         this.setState({
             taskText: e.target.value
-        });
+        });  
     }
 
-    onTaskCreated(e) {
+    onTaskCreated() {
         const task = {
             title: this.state.taskTitle,
             text: this.state.taskText
         };
 
-        this.setState({
-            taskTitle: '',
-            taskText: ''
-        });
-
         this.props.onTaskCreated(task);
+         setTimeout(this.setState({
+            taskTitle: '',
+            taskText: '',
+            expanded: false
+        }), 500);
     }
 
     handleExpand() {
@@ -54,17 +57,29 @@ class CreateTask extends Component {
     render() {
         return (
             <div className="CreateTask">
-                <div className="top-bar">
+                <div className="top-bar" onClick={this.handleExpand}>
                     <div>
-                        <h4>Create new task</h4>
+                        <h5>Create new task</h5>
                     </div>
-                    <img src={iconPlus} onClick={this.handleExpand}/>
+                    <img src={this.state.expanded ? arrow_up : arrow_down}/>
                 </div>
                 <div className={`expandable ${this.state.expanded ? '' : 'hidden'}`}>
                     <div className="content">
-                        <input type="text" value={this.state.taskTitle} onChange={this.onTitleInputChange}/>
-                        <textarea value={this.state.taskText} onChange={this.onTextInputChange}></textarea>
-                        <button onClick={this.onTaskCreated}>Create task</button>
+                        <input type="text"
+                            value={this.state.taskTitle}
+                            onChange={this.onTitleInputChange}
+                            placeholder="Give your task a title ..."
+                            autoFocus={this.state.expanded.toString()}/>
+                        <textarea 
+                            rows="4"
+                            value={this.state.taskText}
+                            onChange={this.onTextInputChange}
+                            placeholder="Describe your task ..."></textarea>
+                        <div className="button" onClick={this.onTaskCreated}>
+                            <span>Done</span>
+                            <img src={done}/> 
+                        </div>
+                        <div className="divider"></div>
                     </div>
                 </div>
             </div>

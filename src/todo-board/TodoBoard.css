@@ -1,9 +1,9 @@
 .TodoBoard {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    min-width: 600px;
-    min-height: 300px;
-    margin: 24px;
-    background-color: #222
-  }
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  min-width: 600px;
+  min-height: 300px;
+  margin: 24px;
+}

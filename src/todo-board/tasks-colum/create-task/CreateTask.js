@@ -95,10 +95,10 @@ class CreateTask extends Component {
             case this.refs.doneButton:
                 if (keyCode === this.ARROW_UP_KEY_CODE) {
                     this.refs.textarea.focus();
-                } else if (keyCode === this.TAB_KEY_CODE) {
+                } else if (keyCode === this.TAB_KEY_CODE || keyCode === this.ARROW_DOWN_KEY_CODE) {
                     e.preventDefault();
                     this.refs.topBarButton.focus();
-                }
+                } 
                 break;
 
             case this.refs.topBarButton:
@@ -109,6 +109,8 @@ class CreateTask extends Component {
                     } else {
                         this.refs.titleInput.focus();
                     }
+                } else if (keyCode === this.ARROW_DOWN_KEY_CODE && this.state.expanded) {
+                    this.refs.titleInput.focus();
                 }   
                 break;
             

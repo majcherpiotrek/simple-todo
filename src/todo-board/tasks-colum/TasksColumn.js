@@ -17,7 +17,7 @@ function TasksColumn(props) {
     
     const tasks = props.data.tasks.map((task) => {
         return (
-            <Task key={task.id} task={task} onTaskLifted={onTaskLifted}/>
+            <Task taskDone={props.data.id === 'done'} key={task.id} task={task} onTaskLifted={onTaskLifted}/>
         );
     });
     return (
@@ -26,7 +26,7 @@ function TasksColumn(props) {
             onDragOver={(e) => e.preventDefault()}>
                 <TitleField title={props.data.title}/>
                 {createTaskComponent}
-                {tasks}
+                <div className="tasks-list">{tasks}</div>
         </div>
     );
     

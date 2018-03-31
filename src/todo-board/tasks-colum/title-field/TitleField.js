@@ -1,6 +1,6 @@
 import './TitleField.css';
 
-import React, { Component } from 'react';
+import React from 'react';
 
 function TitleField(props) {
     return (

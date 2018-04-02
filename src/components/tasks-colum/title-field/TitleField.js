@@ -2,10 +2,10 @@ import './TitleField.css';
 
 import React from 'react';
 
-function TitleField(props) {
+function TitleField({title}) {
     return (
         <div className="TitleField">
-            <h3>{props.title}</h3>
+            <h3>{title}</h3>
         </div>
     );  
 }

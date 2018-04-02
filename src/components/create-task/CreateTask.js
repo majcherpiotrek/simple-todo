@@ -1,9 +1,9 @@
 import './CreateTask.css';
 
 import React, { Component } from 'react';
-import arrow_down from '../../../img/arrow_down.svg';
-import arrow_up from '../../../img/arrow_up.svg';
-import done from '../../../img/done.svg';
+import arrow_down from '../../img/arrow_down.svg';
+import arrow_up from '../../img/arrow_up.svg';
+import done from '../../img/done.svg';
 
 class CreateTask extends Component {
 
@@ -44,13 +44,11 @@ class CreateTask extends Component {
     }
 
     onTaskCreated() {
-        const task = {
-            title: this.state.taskTitle,
-            text: this.state.taskText
-        };
+        this.props.onTaskCreated(
+            this.state.taskTitle, 
+            this.state.taskText);
 
-        this.props.onTaskCreated(task);
-         setTimeout(() => {
+        setTimeout(() => {
             this.setState({
                 taskTitle: '',
                 taskText: '',
